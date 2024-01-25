@@ -1,17 +1,15 @@
-package com.code.cli;
+package ${basePackage}.cli;
 
-import com.code.cli.command.ConfigCommand;
-import com.code.cli.command.GenerateCommand;
-import com.code.cli.command.ListCommand;
+import ${basePackage}.cli.command.GenerateCommand;
+import ${basePackage}.cli.command.ListCommand;
+import ${basePackage}.cli.command.ConfigCommand;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
 /**
- * @author ctc
- * @date 2024/1/23
+ * 命令执行器
  */
-
-@Command(name = "yuzi", mixinStandardHelpOptions = true)
+@Command(name = "${name}", mixinStandardHelpOptions = true)
 public class CommandExecutor implements Runnable {
 
     private final CommandLine commandLine;
@@ -39,4 +37,3 @@ public class CommandExecutor implements Runnable {
         return commandLine.execute(args);
     }
 }
-

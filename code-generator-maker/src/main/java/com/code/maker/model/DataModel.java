@@ -1,4 +1,4 @@
-package com.code.model;
+package com.code.maker.model;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import lombok.Data;
  * @date 2024/1/20
  */
 @Data
-public class MainTemplateConfig {
+public class DataModel {
     /**
      * 字符串填充值
      */

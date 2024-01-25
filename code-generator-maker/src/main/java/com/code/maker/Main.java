@@ -1,6 +1,6 @@
-package com.code;
+package com.code.maker;
 
-import com.code.cli.CommandExecutor;
+// import com.code.maker.cli.CommandExecutor;
 
 /**
  * @author ctc
@@ -12,7 +12,7 @@ public class Main {
         // args = new String[]{"generate", "-l", "-a", "-o"};
        // args = new String[]{"config"};
        // args = new String[]{"list"};
-        CommandExecutor commandExecutor = new CommandExecutor();
-        commandExecutor.doExecute(args);
+       //  CommandExecutor commandExecutor = new CommandExecutor();
+       //  commandExecutor.doExecute(args);
     }
 }
