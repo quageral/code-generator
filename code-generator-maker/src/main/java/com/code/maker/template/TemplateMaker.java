@@ -131,6 +131,10 @@ public class TemplateMaker {
 
             // 获取过滤后的文件列表（不会存在目录）
             List<File> fileList = FileFilter.doFilter(inputFilePath, fileInfoConfig.getFilterConfigList());
+            // 不再处理 ftl 后缀的文件，将其过滤
+            fileList = fileList.stream()
+                    .filter(file -> !file.getAbsolutePath().endsWith(".ftl"))
+                    .collect(Collectors.toList());
             for (File file : fileList) {
                 Meta.FileConfig.FileInfo fileInfo = makeFileTemplate(templateMakerModelConfig, sourceRootPath, file);
                 newFileInfoList.add(fileInfo);
@@ -190,7 +194,7 @@ public class TemplateMaker {
 
 
         // 三、生成配置文件meta.json
-        String metaOutputPath = sourceRootPath + File.separator + "meta.json";
+        String metaOutputPath = templatePath + File.separator + "meta.json";
 
         // 如果已有 meta 文件，说明不是第一次制作，则在 meta 基础上进行修改
         if (FileUtil.exist(metaOutputPath)) {
@@ -240,8 +244,9 @@ public class TemplateMaker {
 
         // 二、使用字符串替换，生成模板文件
         String fileContent;
-        // 如果已有模板文件，则在其基础上再次挖坑
-        if (FileUtil.exist(fileOutputAbsolutePath)) {
+        // 如果已有模板文件，则不是第一次制作，在其基础上再次挖坑
+        boolean hasTemplateFile = FileUtil.exist(fileOutputAbsolutePath);
+        if (hasTemplateFile) {
             fileContent = FileUtil.readUtf8String(fileOutputAbsolutePath);
         } else { // 否则，从原始文件中读取
             fileContent = FileUtil.readUtf8String(fileInputAbsolutePath);
@@ -266,18 +271,25 @@ public class TemplateMaker {
 
         // 文件配置信息
         Meta.FileConfig.FileInfo fileInfo = new Meta.FileConfig.FileInfo();
-        fileInfo.setInputPath(fileInputPath);
-        fileInfo.setOutputPath(fileOutputPath);
+        // 调换输入输出路径，和后续生成操作吻合
+        fileInfo.setInputPath(fileOutputPath);
+        fileInfo.setOutputPath(fileInputPath);
         fileInfo.setType(FileTypeEnum.FILE.getValue());
+        fileInfo.setGenerateType(FileGenerateTypeEnum.DYNAMIC.getValue());
 
-        if (newFileContent.equals(fileContent)) { // 和原文件一致，没有挖坑，则为静态生成
-            // 输出路径 = 输入路径
-            fileInfo.setOutputPath(fileInputPath);
-            fileInfo.setGenerateType(FileGenerateTypeEnum.STATIC.getValue());
-        } else { // 否则动态生成模板文件
+        // 布尔变量存储是否更改了内容
+        boolean contentEquals = newFileContent.equals(fileContent);
 
+        if (!contentEquals) {
+            // 有内容替换，则生成模板文件
             FileUtil.writeUtf8String(newFileContent, fileOutputAbsolutePath);
-            fileInfo.setGenerateType(FileGenerateTypeEnum.DYNAMIC.getValue());
+        } else {
+            // 之前不存在模板文件，并且没有更改文件内容，则为静态生成
+            if (!hasTemplateFile) {
+                // 输出路径 = 输入路径,静态路径没有ftl后缀
+                fileInfo.setInputPath(fileInputPath);
+                fileInfo.setGenerateType(FileGenerateTypeEnum.STATIC.getValue());
+            }
         }
 
         return fileInfo;
@@ -315,7 +327,7 @@ public class TemplateMaker {
 
         // 4. 将未分组的文件添加到结果列表
         List<Meta.FileConfig.FileInfo> noGroupFileInfoList = fileInfoList.stream().filter(fileInfo -> StrUtil.isBlank(fileInfo.getGroupKey())).collect(Collectors.toList());
-        resultList.addAll(new ArrayList<>(noGroupFileInfoList.stream().collect(Collectors.toMap(Meta.FileConfig.FileInfo::getInputPath, o -> o, (e, r) -> r)).values()));
+        resultList.addAll(new ArrayList<>(noGroupFileInfoList.stream().collect(Collectors.toMap(Meta.FileConfig.FileInfo::getOutputPath, o -> o, (e, r) -> r)).values()));
         return resultList;
 
     }
