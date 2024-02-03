@@ -83,7 +83,7 @@ public class MetaValidator {
         String inputRootPath = fileConfig.getInputRootPath();
 
         if (StrUtil.isEmpty(inputRootPath)) {
-            String defaultInputRootPath = ".source" + File.separator + FileUtil.getLastPathEle(Paths.get(sourceRootPath)).getFileName().toString();
+            String defaultInputRootPath = ".source/"  + FileUtil.getLastPathEle(Paths.get(sourceRootPath)).getFileName().toString();
             fileConfig.setInputRootPath(defaultInputRootPath);
         }
 
