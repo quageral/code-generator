@@ -13,6 +13,7 @@ import com.code.maker.meta.enums.FileTypeEnum;
 import com.code.maker.template.enums.FileFilterRangeEnum;
 import com.code.maker.template.enums.FileFilterRuleEnum;
 import com.code.maker.template.model.FileFilterConfig;
+import com.code.maker.template.model.TemplateMakerConfig;
 import com.code.maker.template.model.TemplateMakerFileConfig;
 import com.code.maker.template.model.TemplateMakerModelConfig;
 
@@ -95,6 +96,21 @@ public class TemplateMaker {
 
     }
 
+    /**
+     * 制作模板
+     *
+     * @param templateMakerConfig
+     * @return
+     */
+    public static long makeTemplate(TemplateMakerConfig templateMakerConfig) {
+        Meta meta = templateMakerConfig.getMeta();
+        String originProjectPath = templateMakerConfig.getOriginProjectPath();
+        TemplateMakerFileConfig templateMakerFileConfig = templateMakerConfig.getFileConfig();
+        TemplateMakerModelConfig templateMakerModelConfig = templateMakerConfig.getModelConfig();
+        Long id = templateMakerConfig.getId();
+
+        return makeTemplate(meta, originProjectPath, templateMakerFileConfig, templateMakerModelConfig, id);
+    }
     public static long makeTemplate(Meta newMeta, String originProjectPath, TemplateMakerFileConfig templateMakerFileConfig, TemplateMakerModelConfig templateMakerModelConfig, Long id) {
         if (id == null) {
             id = IdUtil.getSnowflakeNextId();
