@@ -8,7 +8,8 @@ package com.code.maker.generator.main;
 public class MainGenerator extends GenerateTemplate {
 
     @Override
-    protected void buildDist(String outputPath, String jarPath, String shellOutputFilePath, String sourceCopyDestPath) {
+    protected String buildDist(String outputPath, String jarPath, String shellOutputFilePath, String sourceCopyDestPath) {
         System.out.println("不要输出Dist目录");
+        return "";
     }
 }

@@ -128,9 +128,11 @@ public class FileController {
         }
         validFile(multipartFile, fileUploadBizEnum);
         User loginUser = userService.getLoginUser(request);
-        // 文件目录：根据业务、用户来划分
+        // 文件名前添加uuid
         String uuid = RandomStringUtils.randomAlphanumeric(8);
         String filename = uuid + "-" + multipartFile.getOriginalFilename();
+        // 文件目录：按照业务/用户ID/文件来分级，便于管理和删除违规用户文件
+        // /user_avatar/1/aaa.jpg
         String filepath = String.format("/%s/%s/%s", fileUploadBizEnum.getValue(), loginUser.getId(), filename);
         File file = null;
         try {
