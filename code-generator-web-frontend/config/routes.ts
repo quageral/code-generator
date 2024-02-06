@@ -1,9 +1,12 @@
 export default [
-  { path: '/user', layout: false,
+  {
+    path: '/user',
+    layout: false,
     routes: [
       { path: '/user/login', component: './User/Login' },
       { path: '/user/register', component: './User/Register' },
-    ] },
+    ],
+  },
   {
     path: '/admin',
     icon: 'crown',
@@ -21,5 +24,12 @@ export default [
     ],
   },
   { path: '/', icon: 'home', component: './Index', name: '主页' },
+  {
+    path: '/test/file',
+    icon: 'home',
+    component: './Test/File',
+    name: '文件上传下载测试',
+    hideInMenu: true,
+  },
   { path: '*', layout: false, component: './404' },
 ];

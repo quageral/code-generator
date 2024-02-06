@@ -5,6 +5,7 @@ generated
 target
 code-generator.iml
 code-generator-web-backend/.mvn
+application-local.yml
 
 ### Java template
 # Compiled class file
