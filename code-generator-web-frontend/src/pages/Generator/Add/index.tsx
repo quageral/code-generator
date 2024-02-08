@@ -39,6 +39,7 @@ const GeneratorAddPage: React.FC = () => {
     }
     try {
       const res = await getGeneratorVoByIdUsingGet({
+        // @ts-ignore
         id,
       });
 
@@ -121,7 +122,9 @@ const GeneratorAddPage: React.FC = () => {
     }
 
     if (id) {
+
       await doUpdate({
+        // @ts-ignore
         id,
         ...values,
       });

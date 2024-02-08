@@ -44,5 +44,12 @@ export default [
     name: '修改生成器',
     hideInMenu: true,
   },
+  {
+    path: '/generator/detail/:id',
+    icon: 'home',
+    component: './Generator/Detail',
+    name: '生成器详情',
+    hideInMenu: true,
+  },
   { path: '*', layout: false, component: './404' },
 ];

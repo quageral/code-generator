@@ -1,6 +1,7 @@
 package com.code.web.controller;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.StrUtil;
 import com.code.web.annotation.AuthCheck;
 import com.code.web.common.BaseResponse;
 import com.code.web.common.ErrorCode;
@@ -10,8 +11,10 @@ import com.code.web.constant.UserConstant;
 import com.code.web.exception.BusinessException;
 import com.code.web.manager.CosManager;
 import com.code.web.model.dto.file.UploadFileRequest;
+import com.code.web.model.entity.Generator;
 import com.code.web.model.entity.User;
 import com.code.web.model.enums.FileUploadBizEnum;
+import com.code.web.service.GeneratorService;
 import com.code.web.service.UserService;
 import com.qcloud.cos.model.COSObject;
 import com.qcloud.cos.model.COSObjectInputStream;
@@ -41,6 +44,9 @@ public class FileController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private GeneratorService generatorService;
 
     @Resource
     private CosManager cosManager;
@@ -107,7 +113,6 @@ public class FileController {
             }
         }
     }
-
 
 
     /**
