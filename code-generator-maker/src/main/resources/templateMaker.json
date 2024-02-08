@@ -1,23 +1,54 @@
 {
   "meta": {
     "name": "acm-template-pro-generator",
-    "description": "Springboot 博客模板生成器"
+    "description": "acm-template 模板生成器"
   },
-  "originProjectPath": "../../../code-generator-demo-projects/springboot-init",
+  "originProjectPath": "../../../code-generator-demo-projects/acm-template-pro",
   "fileConfig": {
     "files": [
       {
-        "path": "src/main/java/com/yupi/springbootinit/common"
+        "path": "src/com/code/acm"
       }
     ]
   },
   "modelConfig": {
     "models": [
       {
-        "fieldName": "className",
-        "type": "String",
+        "fieldName": "needGit",
+        "type": "boolean",
+        "description": "是否生成 .gitignore 文件",
         "defaultValue": true,
-        "replaceText": "BaseResponse"
+        "abbr": "g"
+      },
+      {
+        "fieldName": "loop",
+        "type": "boolean",
+        "description": "是否生成循环",
+        "defaultValue": true,
+        "abbr": "l"
+      },
+      {
+        "groupKey": "mainTemplate",
+        "groupName": "核心模板",
+        "type": "MainTemplate",
+        "description": "用以生成核心模板文件",
+        "condition": "loop",
+        "models": [
+          {
+            "fieldName": "author",
+            "type": "String",
+            "description": "作者注释",
+            "defaultValue": "ctc",
+            "abbr": "a"
+          },
+          {
+            "fieldName": "outputText",
+            "type": "String",
+            "description": "输出信息",
+            "defaultValue": "sum = ",
+            "abbr": "o"
+          }
+        ]
       }
     ]
   }
