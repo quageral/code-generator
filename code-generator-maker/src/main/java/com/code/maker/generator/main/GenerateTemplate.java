@@ -19,13 +19,17 @@ import java.io.IOException;
  * @date 2024/1/25
  */
 public abstract class GenerateTemplate {
+
     public void doGenerate() throws TemplateException, IOException, InterruptedException {
         Meta meta = MetaManager.getMetaObject();
-        System.out.println(meta);
-
-        //     输出的根路径
+        // 输出的根路径
         String projectPath = System.getProperty("user.dir");
         String outputPath = projectPath + File.separator + "generated" + File.separator + meta.getName();
+        // 有参调用
+        doGenerate(meta, outputPath);
+    }
+
+    public void doGenerate(Meta meta, String outputPath) throws TemplateException, IOException, InterruptedException {
         if (!FileUtil.exist(outputPath)) {
             FileUtil.mkdir(outputPath);
         }
@@ -49,6 +53,7 @@ public abstract class GenerateTemplate {
 
     /**
      * 生成精简版的程序
+     *
      * @param outputPath
      * @param jarPath
      * @param shellOutputFilePath
@@ -86,9 +91,8 @@ public abstract class GenerateTemplate {
     }
 
     protected void generateCode(Meta meta, String outputPath) throws IOException, TemplateException {
-        // 读取 resources 目录
-        ClassPathResource classPathResource = new ClassPathResource("");
-        String inputResourcePath = classPathResource.getAbsolutePath();
+        // 达成 jar 包后， resources 目录在 doGenerate 方法里获取
+        String inputResourcePath = "";
 
         // Java包基础路径
         // com.code
@@ -129,7 +133,7 @@ public abstract class GenerateTemplate {
         // cli.command.JsonGenerateCommand
         inputFilePath = inputResourcePath + File.separator + "templates/java/cli/command/JsonGenerateCommand.java.ftl";
         outputFilePath = outputBaseJavaPackagePath + "/cli/command/JsonGenerateCommand.java";
-        DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+        DynamicFileGenerator.doGenerate(inputFilePath, outputFilePath, meta);
 
         // cli.command.ListCommand
         inputFilePath = inputResourcePath + File.separator + "templates/java/cli/command/ListCommand.java.ftl";
