@@ -15,6 +15,26 @@ export default (props: Props) => {
   const formRef = useRef<ProFormInstance>();
 
   /**
+   * Update models in meta object
+   * @param models
+   */
+  const updateModels = (models: any[]) => {
+    models.forEach(model => {
+      if (model.type === 'boolean') {
+        if (model.defaultValue === 'true') {
+          model.defaultValue = true;
+        } else if (model.defaultValue === 'false') {
+          model.defaultValue = false;
+        }
+      }
+
+      if (model.models) {
+        updateModels(model.models);
+      }
+    });
+  };
+
+  /**
    * 提交
    * @param values
    */
@@ -35,6 +55,10 @@ export default (props: Props) => {
     // 文件列表转换成 url
     // @ts-ignore
     values.zipFilePath = zipFilePath[0].response;
+
+    // Update models in copied meta object
+    updateModels(meta.modelConfig.models);
+    console.log('meta', meta);
 
     try {
       const blob = await makeGeneratorUsingPost(

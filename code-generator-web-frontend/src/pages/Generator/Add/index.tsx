@@ -153,6 +153,7 @@ const GeneratorAddPage: React.FC = () => {
             title="基本信息"
             onFinish={async (values) => {
               setBasicInfo(values);
+              // console.log('basicInfo', values);
               return true;
             }}
           >
@@ -171,6 +172,7 @@ const GeneratorAddPage: React.FC = () => {
             title="模型配置"
             onFinish={async (values) => {
               setModelConfig(values);
+              // console.log('modelConfig', values);
               return true;
             }}
           >
@@ -181,6 +183,7 @@ const GeneratorAddPage: React.FC = () => {
             title="文件配置"
             onFinish={async (values) => {
               setFileConfig(values);
+              // console.log('fileConfig', values);
               return true;
             }}
           >
