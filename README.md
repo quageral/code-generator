@@ -2,31 +2,31 @@
 
 前端
 
-- React 开发框架 + 组件库 + 代码编辑器
-- 前端工程化：ESLint + Prettier + TypeScript
+- React 开发框架
+- 前端工程化：ESLint + Prettier + TypeScript + OpenAPI
+- Ant Design 组件库
 
 后端
 
-- Java Spring Boot + MySQL + MyBatis Plus（万用后端模板）
-- Java 命令行应用开发
+- Java Spring Boot + MySQL + MyBatis Plus
+- Picocli Java 命令行应用开发
 - **FreeMarker 模板引擎**
-- **Vert.x 响应式编程**(并发能力超过spring)
 - **Caffeine + Redis 多级缓存**
 - 分布式任务调度系统
-- 多种设计模式
-- 多种系统设计的巧思
-- 对象存储
+- 多种设计模式（命令模式、模板方法模式、双检锁单例模式）
+- 项目优化（可移植性、可扩展性、健壮性、圈复杂度优化）
+- 腾讯云 COS 对象存储
 
 
 # 项目三步走
 
-## 第一阶段：代码生成器（给使用者的生成器）
+## 第一阶段：代码生成器（给用户的生成器）
 
 业务流程
 1）准备用于制作代码生成器的原始代码（比如 Java ACM 模板项目），用于后续生成
 2）开发者基于原始代码，设置参数、编写动态模板
 3）制作可交互的命令行工具，支持用户输入参数，得到代码生成器 jar 包
-4）使用者得到代码生成器 jar 包，执行程序并输入参数，从而生成完整代码（eg. 若依）
+4）用户得到代码生成器 jar 包，执行程序并输入参数，从而生成完整代码（eg. 若依）
 
 
 

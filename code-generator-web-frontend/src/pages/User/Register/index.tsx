@@ -63,8 +63,8 @@ const UserRegisterPage: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" style={{ height: '100%' }} src="/logo.svg" />}
-          title="鱼籽代码生成"
-          subTitle={'代码生成器在线制作共享，大幅提升开发效率'}
+          title="芝士代码生成"
+          subTitle={'交换苹果，苹果不变；交换芝士，知识翻倍'}
           initialValues={{
             autoLogin: true,
           }}
