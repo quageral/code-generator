@@ -6,6 +6,9 @@ target
 code-generator.iml
 code-generator-web-backend/.mvn
 application-local.yml
+application-prod.yml
+code-generator-web-frontend/src/constants/index.ts
+
 
 ### Java template
 # Compiled class file
