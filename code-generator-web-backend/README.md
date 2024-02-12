@@ -1,7 +1,7 @@
 # Code-generator 代码生成器 web 后端
 
 > 作者：[陈廷墀](https://github.com/quageral)
-> 仅分享于 [编程导航知识星球](https://yupi.icu)
+> 仅分享于 [芝士代码共享](芝士代码共享)
 
 基于 Java SpringBoot 的项目初始模板，整合了常用框架和主流业务的示例代码。
 
@@ -73,7 +73,6 @@
 
 ## 快速上手
 
-> 所有需要修改的地方鱼皮都标记了 `todo`，便于大家找到修改的位置~
 
 ### MySQL 数据库
 

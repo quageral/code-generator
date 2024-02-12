@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * 腾讯云对象存储客户端
  *
  * @author <a href="https://github.com/quageral">陈廷墀</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @from <a href="http://quageral.work">芝士代码共享</a>
  */
 @Configuration
 @ConfigurationProperties(prefix = "cos.client")

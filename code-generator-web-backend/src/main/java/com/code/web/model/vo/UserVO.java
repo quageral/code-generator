@@ -9,7 +9,7 @@ import java.util.Date;
  * 用户视图（脱敏）
  *
  * @author <a href="https://github.com/quageral">陈廷墀</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @from <a href="http://quageral.work">芝士代码共享</a>
  */
 @Data
 public class UserVO implements Serializable {

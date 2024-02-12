@@ -10,7 +10,7 @@ import java.util.List;
  * 帖子数据库操作
  *
  * @author <a href="https://github.com/quageral">陈廷墀</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @from <a href="http://quageral.work">芝士代码共享</a>
  */
 public interface PostMapper extends BaseMapper<Post> {
 
